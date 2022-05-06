@@ -9,6 +9,8 @@ WIDTH, HEIGHT = 750, 800
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("UFO Revised")
 
+os.system("mpv ode_to_joy.webm")
+
 ## Load Images
 RED_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_red_small.png"))
 GREEN_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_green_small.png"))
@@ -71,7 +73,7 @@ class Enemy(Ship):
 
 def main():
 	run = True
-	FPS = 60
+	FPS = 20
 	level = 0
 	lives = 5
 	main_font = pygame.font.SysFont("comicsans", 50)
@@ -120,16 +122,16 @@ def main():
 				run = False
 
 		keys = pygame.key.get_pressed()
-		if keys[pygame.K_a] or keys[pygame.K_LEFT] and player.x - player_vel > 0:
+		if keys[pygame.K_a] or keys[pygame.K_h] or keys[pygame.K_LEFT] and player.x - player_vel > 0:
 			player.x -= player_vel
 		
-		if keys[pygame.K_d] or keys[pygame.K_RIGHT] and player.x + player_vel + player.get_width() < WIDTH:
+		if keys[pygame.K_d] or keys[pygame.K_l] or keys[pygame.K_RIGHT] and player.x + player_vel + player.get_width() < WIDTH:
 			player.x += player_vel
 
-		if keys[pygame.K_w] or keys[pygame.K_UP] and player.y - player_vel > 0:
+		if keys[pygame.K_w] or keys[pygame.K_k] or keys[pygame.K_UP] and player.y - player_vel > 0:
 			player.y -= player_vel
 		
-		if keys[pygame.K_s] or keys[pygame.K_DOWN] and player.y + player_vel + player.get_height() < HEIGHT:
+		if keys[pygame.K_s] or keys[pygame.K_j] or keys[pygame.K_DOWN] and player.y + player_vel + player.get_height() < HEIGHT:
 			player.y += player_vel
 
 		for enemy in enemies[:]:
